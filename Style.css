@@ -87,6 +87,7 @@ nav{
     cursor: url("./quill.png")6 19, auto;
     display: flex;
     padding: 14px;
+    padding-left: 6px;
 }
 .todo_value{
     cursor: inherit;

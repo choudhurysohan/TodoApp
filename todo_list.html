@@ -29,45 +29,61 @@
     <div class="main">
         <img src="scroll.gif" alt="scroll image">
         <div class="content">
+            <button onclick="a()">Add Task  </button><br>
             <div class="container">  
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(1)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="1">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(2)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="2">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(3)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="3">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(4)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="4">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(5)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="5">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(6)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="6">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(7)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="7">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(8)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="8">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
                 <div class="todo">
-                    <input class="todo_value" type="text" placeholder="(empty)">
+                    <button onclick="b(9)">Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" id="9">
                     <input class="todo_checkbox" type="checkbox">
                 </div>
             </div>   
         </div>
     </div>  
 </body>
+<script>
+    var i=1;
+    function a(){
+       document.getElementById(i).value = prompt();
+       i++;
+    }
+    function b(j){
+        document.getElementById(j).value = null;
+        j++;
+        for(let k=j; k<10; k++)
+        document.getElementById(k-1).value = document.getElementById(k).value;
+        document.getElementById(k).value = null;
+        i--;
+    }
+</script>
 </html>
