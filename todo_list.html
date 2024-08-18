@@ -7,7 +7,7 @@
     <title>ToDo List</title>
     <link rel="stylesheet" href="Style.css">
 </head>
-<body>
+<body onload="render()">
     <header>
         <nav class="container">
             <div class="logo">
@@ -36,23 +36,51 @@
     </div>  
 </body>
 <script>
-    var i=1;
+    function render() {
+        const tasks = localStorage.getItem('tasks')
+        const container = document.getElementById("todo_list")
+        if (tasks == null) {
+            container.innerHTML = "There is no task please add one."
+        } else {
+            var task_list = JSON.parse(tasks)
+            if (task_list.length == 0) {
+                container.innerHTML = "There is no task please add one."
+                return
+            }
+            container.innerHTML = ""
+            for(var i = 0; i < task_list.length ; i++) {
+                var task_div = document.createElement('div')
+                task_div.setAttribute('class',"todo")
+                task_div.setAttribute('id',i)
+                task_div.innerHTML = `
+                                <button  onclick="b(${i})" >Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" value="${task_list[i]}">
+                                <input class="todo_checkbox" type="checkbox">
+                            `
+                container.appendChild(task_div)
+            }
+        }
+    }
     function a(){
        const task = prompt();
-       const container = document.getElementById("todo_list")
-       var task_div = document.createElement('div')
-       task_div.setAttribute('class',"todo")
-       task_div.setAttribute('id',i)
-       task_div.innerHTML = `
-                    <button  onclick="b(${i})" >Del</button>&nbsp;<input class="todo_value" type="text" placeholder="(empty)" value="${task}">
-                    <input class="todo_checkbox" type="checkbox">
-                `
-        container.appendChild(task_div)
-        i++
+       var tasks = localStorage.getItem('tasks')
+        if (tasks == null){
+            tasks = []
+        }
+        else{
+            tasks = JSON.parse(tasks)
+        }    
+        tasks.push(task)
+        localStorage.setItem("tasks",JSON.stringify(tasks))
+        render()
     }
     function b(j){
-        var task_div = document.getElementById(j)
-        task_div.remove()
+        var tasks = localStorage.getItem('tasks')
+        var tasks_list = JSON.parse(tasks)
+        tasks_list = tasks_list.filter((value, index ) => {
+            return index != j
+        })
+        localStorage.setItem("tasks",JSON.stringify(tasks_list))
+        render()
     }
 </script>
 </html>
